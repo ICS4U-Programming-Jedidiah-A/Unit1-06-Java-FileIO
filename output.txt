@@ -1,4 +1,8 @@
-Error: "b67" is invalid.
-423
+55
 Error: Line is empty.
+-2
+30
 Error: "satisfy" is invalid.
+Error: "jed" is invalid.
+0
+35

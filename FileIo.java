@@ -28,47 +28,60 @@ public final class FileIo {
     */
     public static void main(String[] args) {
         try {
-            // Choose a file to get input from.
+            // File to take in the input.
             final File input = new File("input.txt");
-            final Scanner scanInput = new Scanner(input);
-            // Choose (or create) a file to print output to.
+            final Scanner inputScanner = new Scanner(input);
+
+            // File to print out the output.
             final FileWriter output = new FileWriter("output.txt");
-            while (scanInput.hasNextLine()) {
-                // Create variable to be used in error checking.
+            while (inputScanner.hasNextLine()) {
+
+                // variables for error checking.
                 boolean error = false;
-                // Variables for loops.
-                int sum = 0;
+
+                // loop variables
+                int sumUp = 0;
                 int counter = 0;
-                // Split new line by whitespace.
-                final String[] fromFile = scanInput.nextLine().split(" ");
+
+                // Split line
+                final String[] fromFile = inputScanner.nextLine().split(" ");
                 while (counter < fromFile.length) {
                     try {
-                        // Convert strings to integers and add them.
-                        sum += Integer.parseInt(fromFile[counter]);
+
+                        // Converting strings to int and putting them together.
+                        sumUp += Integer.parseInt(fromFile[counter]);
                     } catch (NumberFormatException err) {
-                        // Checking if the line is empty.
+
+                        // Check for empty line.
                         if (fromFile[counter].isEmpty()) {
                             output.write("Error: Line is empty.\n");
                         } else {
-                            // For when a non-integer is found on the line.
+
+                            // For any input that is not an int found on the line.
                             output.write("Error: \"" + fromFile[counter]
                                         + "\" is invalid.\n");
                         }
-                        // Variable to indicate if an error has occurred.
+
+                        // Variable for error check.
                         error = true;
-                        // Stop adding elements on this line
-                        // if an error is encountered.
+
+                        // If an error occurs
+                        // Then stop adding elements on this line.
                         break;
                     }
+
                     // Add one to the counter.
                     counter++;
                 }
+
                 // If no error has occurred.
                 if (!error) {
-                    // Output sum of all integers on the line to output file.
-                    output.write(sum + "\n");
+
+                    // Output the sum up of all ints on the line to output file.
+                    output.write(sumUp + "\n");
                 }
             }
+
             // Close writer.
             output.close();
 
